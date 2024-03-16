@@ -72,14 +72,14 @@
         </div>
         <div class='grid-row-span-1 w-full h-full border-gray-600 border-8 bg-gray-600'>
             <div class="w-full h-full grid grid-cols-3 grid-rows-1 border-gray-700 border-8 align-middle font-bold bg-gray-600 p-8">
-                <div class="border-8 border-amber-900 p-8 font-bold font-xs bg-amber-700 kolo-ratunkowe" id="ratunek-publicznosc">
-
+                <div class="border-8 border-amber-900 p-8 font-bold font-9xl bg-amber-700 kolo-ratunkowe" id="ratunek-publicznosc">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
-                <div class="border-8 border-rose-900 p-8 font-bold font-xs bg-rose-500 kolo-ratunkowe" id="ratunek-50/50">
-
+                <div class="border-8 border-rose-900 p-8 font-bold font-9xl bg-rose-500 kolo-ratunkowe" id="ratunek-50/50">
+                    <i class='fa-solid fa-gamepad'></i>
                 </div>
-                <div class="border-8 border-emerald-900 p-8 font-bold font-xs bg-emerald-700 kolo-ratunkowe" id="ratunek-telefon">
-
+                <div class="border-8 border-emerald-900 p-8 font-bold font-9xl bg-emerald-700 kolo-ratunkowe" id="ratunek-telefon">
+                    <i class='fa-solid fa-gamepad'></i>
                 </div>
             </div>
         </div>
