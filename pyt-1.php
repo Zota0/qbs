@@ -3,32 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin" />
     <title>Document</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js'></script>
     <script src='https://cdn.tailwindcss.com'></script>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' integrity='sha512-tx5+1LWHez1QiaXlAyDwzdBTfDjX07GMapQoFTS74wkcPMsI3So0KYmFe6EHZjI8+eSG0ljBlAQc3PQ5BTaZtQ==' crossorigin='anonymous'/>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js' integrity='sha512-HAXr8ULpyrhyIF0miP+mFTwOagNI+UVA38US1XdtBbkU7mse59ar0ck4KBil/jyzkTO37DWLfRQvEeUWgwHu0g==' crossorigin='anonymous'></script>
 </head>
-<body class='bg-gray-700 min-h-svh h-svh max-h-svh'>
+<body class='bg-gray-700 min-h-svh h-svh max-h-svh px-12'>
     <?php
         $NazwaPelna = basename(__FILE__);
         $NazwaBezKropki = str_replace(('.php'),'', $NazwaPelna);
         $NrPyt = str_replace('pyt-','',$NazwaBezKropki);
 
-        $SciezkaDoPlikuPytan = __DIR__.'/pytania.json';;
-        $PlikPytanJakoTablica = json_decode(fread(fopen($SciezkaDoPlikuPytan,'r'),filesize($SciezkaDoPlikuPytan)), true);
+        $SciezkaDoPlikuPytan = __DIR__.'/pytania.json';
 
-        $PlikPytan = $PlikPytanJakoTablica[$NrPyt];
+        $OwtorzPlikPytan = fopen($SciezkaDoPlikuPytan,'r+');
+        $CzytajPlikPytan = fread($OwtorzPlikPytan,filesize($SciezkaDoPlikuPytan));
+
+        $PlikPytanJakoTablica = json_decode($CzytajPlikPytan,true);
+
         (string)$WinnerPage = $PlikPytanJakoTablica['winner_page'];
+        (string)$AvailableAudience = $PlikPytanJakoTablica['publicznosc'];
+        (string)$AvailableFityFifty = $PlikPytanJakoTablica['polowa'];
+        (string)$AvailablePhone = $PlikPytanJakoTablica['telefon'];
 
-        $Pytanie = $PlikPytan['pytanie'];
 
-        $Odpowiedz_A = $PlikPytan['A'];
-        $Odpowiedz_B = $PlikPytan['B'];
-        $Odpowiedz_C = $PlikPytan['C'];
-        $Odpowiedz_D = $PlikPytan['D'];
-        $PoprawnaOdp = $PlikPytan['poprawna_odp'];
+        (array)$PlikPytan = $PlikPytanJakoTablica[$NrPyt];
 
-        $LiczbaPytan = $PlikPytanJakoTablica['liczba_pytan'];
+        (string)$Pytanie = $PlikPytan['pytanie'];
+        (string)$Odpowiedz_A = $PlikPytan['A'];
+        (string)$Odpowiedz_B = $PlikPytan['B'];
+        (string)$Odpowiedz_C = $PlikPytan['C'];
+        (string)$Odpowiedz_D = $PlikPytan['D'];
+        (string)$PoprawnaOdp = $PlikPytan['poprawna_odp'];
+
+        (int)$LiczbaPytan = $PlikPytanJakoTablica['liczba_pytan'];
 
         $Odpowiedzi = [
             'A' => $Odpowiedz_A,
@@ -61,42 +70,132 @@
 
     ?>
     
-    <div class='grid grid-rows-11 border-0 p-4 px-12'>
-        <div class='grid-row-span-5 w-full h-full border-8 border-gray-600'>
+    <div class='grid grid-rows-11 border-0 p-8 gap-0'>
+        <div class='grid-row-span-5 w-full h-full border-8 border-gray-600 gap-0'>
             <div class='w-full h-full border-gray-700 border-8 align-middle font-bold bg-gray-600 p-8'>
-                <h1 id='question' class='block text-white text-center font-bold text-5xl p-8 w-full h-full'>
+                <p id='question' class='block text-white text-center font-bold text-5xl p-8 w-full h-full'>
                     <span class='mx-4'></span>
                     <?php Question($Pytanie);?>
-                </h1>
+                </p>
             </div>
         </div>
-        <div class='grid-row-span-1 w-full h-full border-gray-600 border-8 bg-gray-600'>
-            <div class="w-full h-full grid grid-cols-3 grid-rows-1 border-gray-700 border-8 align-middle font-bold bg-gray-600 p-8">
-                <div class="border-8 border-amber-900 p-8 font-bold font-9xl bg-amber-700 kolo-ratunkowe" id="ratunek-publicznosc">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <div class='max-w-full grid-row-span-1 w-full h-min border-gray-600 border-8 bg-gray-600 overflow-hidden -mb-8'>
+            <center class='grid grid-cols-3 grid-rows-1 border-gray-700 border-8 align-middle font-bold bg-gray-600 p-8'>
+                <div class="p-0 font-bold kolo-ratunkowe">
+                    <button accesskey='z' class='hover:cursor-pointer' onclick='Helper(this)' id="ratunek-publicznosc">
+                        <img width='75' class='scale-100' src='audience.png'>
+                    </button>
                 </div>
-                <div class="border-8 border-rose-900 p-8 font-bold font-9xl bg-rose-500 kolo-ratunkowe" id="ratunek-50/50">
-                    <i class='fa-solid fa-gamepad'></i>
+                <div class="p-0 font-bold kolo-ratunkowe">
+                    <button accesskey='x' class='hover:cursor-pointer' onclick='Helper(this)' id="ratunek-50_50">
+                        <img width='75' class='scale-100' src='50-percent.png'>
+                    </button>
                 </div>
-                <div class="border-8 border-emerald-900 p-8 font-bold font-9xl bg-emerald-700 kolo-ratunkowe" id="ratunek-telefon">
-                    <i class='fa-solid fa-gamepad'></i>
+                <div class="p-0 font-bold kolo-ratunkowe">
+                    <button accesskey='c' class='hover:cursor-pointer' onclick='Helper(this)' id="ratunek-telefon">
+                        <img width='75' class='scale-100' src='call.png'>
+                    </button>
                 </div>
-            </div>
+            </center>
         </div>
-        <div class='grid-row-span-5 grid grid-rows-2 grid-cols-2 border-8 border-gray-600'>
-            <button value='A' id='answer-a' class='answer-button border-pink-900 bg-red-600 border-8 p-8 font-bold font-xs text-red-100 w-full' onclick='CheckAnswer(this)'>A. <?php Answer('A',$Odpowiedzi);?></button>
-            <button value='B' id='answer-b' class='answer-button border-cyan-900 bg-blue-600 border-8 p-8 font-bold font-xs text-blue-100 w-full' onclick='CheckAnswer(this)'>B. <?php Answer('B',$Odpowiedzi);?></button>
-            <button value='C' id='answer-c' class='answer-button border-violet-900 bg-violet-600 border-8 p-8 font-bold font-xs text-purple-100 w-full' onclick='CheckAnswer(this)'>C. <?php Answer('C',$Odpowiedzi);?></button>
-            <button value='D' id='answer-d' class='answer-button border-yellow-900 bg-orange-600 border-8 p-8 font-bold font-xs text-orange-100 w-full' onclick='CheckAnswer(this)'>D. <?php Answer('D',$Odpowiedzi);?></button>
+        <div class='relative -top-44  mt-0 h-full w-full grid-row-span-5 grid border-8 gap-0 border-gray-600 bg-gray-600'>
+            <div class='h-full w-full grid gap-10 grid-rows-2 grid-cols-2 p-8 border-8 border-gray-700 bg-gray-600'>
+                <button value='A' id='answer-a' class='answer-button border-pink-900 bg-red-600 border-8 p-8 font-bold font-xs text-red-100 w-11/12 h-full' accesskey='1' onclick='CheckAnswer(this)'>A. <?php Answer('A',$Odpowiedzi);?></button>
+                <button value='B' id='answer-b' class='answer-button border-cyan-900 bg-blue-600 border-8 p-8 font-bold font-xs text-blue-100 w-11/12 h-full' accesskey='2' onclick='CheckAnswer(this)'>B. <?php Answer('B',$Odpowiedzi);?></button>
+                <button value='C' id='answer-c' class='answer-button border-violet-900 bg-violet-600 border-8 p-8 font-bold font-xs text-purple-100 w-11/12 h-full' accesskey='3' onclick='CheckAnswer(this)'>C. <?php Answer('C',$Odpowiedzi);?></button>
+                <button value='D' id='answer-d' class='answer-button border-yellow-900 bg-orange-600 border-8 p-8 font-bold font-xs text-orange-100 w-11/12 h-full' accesskey='4' onclick='CheckAnswer(this)'>D. <?php Answer('D',$Odpowiedzi);?></button>
+            </div>
         </div>
     </div>
 
     <script>
+        const fs = require('fs');
+        
+
+        var available_FiftyFifty = <?php echo $AvailableFityFifty; ?>;
+        var available_Phone = <?php echo $AvailablePhone; ?>;
+        var available_Audience = <?php echo $AvailableAudience; ?>;
+
+        async function RetriveJSONData(file) {
+            try {
+                const Response = await fetch(file);
+                const Data = await Response.json();
+                console.log(Data);
+                return Data;
+            } catch(error) {
+                console.error(error);
+            }
+        }
+
+        async function ChangeJSONData(json, which, new_value) {
+            try {
+                const Data = json;
+                Data[which] = new_value;
+                const ModifiedJSON = JSON.stringify(Data);
+                console.log(ModifiedJSON);
+                return ModifiedJSON;
+            } catch(error) {
+                console.error("Error " + error);
+                return json;
+            }
+        }
+
+        var PytaniaJSON = RetriveJSONData('./pytania.json');
+
         var last_question = <?php echo $LiczbaPytan;?>;
         var now_question = <?php echo $NrPyt; ?>;
 
+        function GetAvailable() {
+            return [available_FiftyFifty, available_Phone, available_Audience];
+        }
+
+        if(!available_Audience) {
+            const a_a = document.getElementById('ratunek-publicznosc');
+            a_a.disabled = true;
+            a_a.classList.add('grayscale');
+        }
+
+        if(!available_Phone) {
+            const a_p = document.getElementById('ratunek-publicznosc');
+            a_p.disabled = true;
+            a_p.classList.add('grayscale');
+        }
+
+        if(!available_FiftyFifty) {
+            const a_ff = document.getElementById('ratunek-publicznosc');
+            a_ff.disabled = true;
+            a_ff.classList.add('grayscale');
+        }
+
         console.log(last_question);
         console.log(now_question);
+
+        async function Helper(what) {
+            what.classList.add('grayscale');
+            switch(what.id) {
+                case 'ratunek-telefon': 
+                    console.log('telefon');
+                    what.disabled = true;
+                    PytaniaJSON = ChangeJSONData(await PytaniaJSON,"telefon","false");
+                    available_Phone = false;
+                    break;
+                case 'ratunek-publicznosc':
+                    console.log('publicznosc');
+                    what.disabled = true;
+                    PytaniaJSON = ChangeJSONData(await PytaniaJSON,"publicznosc","false");
+                    available_Audience = false;
+                    break;
+                case 'ratunek-50_50':
+                    console.log('50/50');
+                    what.disabled = true;
+                    PytaniaJSON = ChangeJSONData(await PytaniaJSON,"polowa","false");
+                    available_FiftyFifty = false;
+                    break;
+            }
+            
+            
+            console.log(what.id);
+        }
 
         async function CheckAnswer(what) {
 

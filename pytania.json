@@ -1,6 +1,13 @@
 {
     "winner_page": "Win.php",
-    "liczba_pytan": "1",
+    "loser_page": "Lose.php",
+
+    "liczba_pytan": "2",
+
+    "polowa": "true",
+    "publicznosc": "true",
+    "telefon": "true",
+
     "1": {
         "pytanie": "PŚĆćężźąYTANIE",
         "A": "aaaaa",
@@ -8,5 +15,13 @@
         "C": "ccccc",
         "D": "ddddd",
         "poprawna_odp": "D"
+    },
+    "2": {
+        "pytanie": "PŚĆćężźąYTANIE",
+        "A": "aaaaa",
+        "B": "bbbbb",
+        "C": "ccccc",
+        "D": "ddddd",
+        "poprawna_odp": "A"
     }
 }
