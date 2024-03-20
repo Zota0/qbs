@@ -66,6 +66,7 @@
                     echo $Odpowiedzi['D'];
                     break;
             }
+            
         }
 
     ?>
@@ -109,12 +110,31 @@
     </div>
 
     <script>
-        const fs = require('fs');
-        
 
-        var available_FiftyFifty = <?php echo $AvailableFityFifty; ?>;
-        var available_Phone = <?php echo $AvailablePhone; ?>;
-        var available_Audience = <?php echo $AvailableAudience; ?>;
+        async function LOG(text) {
+            await console.log(text);
+        }
+
+        var PytaniaJSON = RetriveJSONData('./pytania.json');
+
+        var last_question = <?php echo $LiczbaPytan;?>;
+        var now_question = <?php echo $NrPyt; ?>;
+
+        console.log(last_question);
+        console.log(now_question);
+
+        var available_FiftyFifty;
+        var available_Phone;
+        var available_Audience;
+
+        if(now_question === 1) {
+            available_FiftyFifty = <?php echo $AvailableFityFifty ;?>;
+            available_Phone = <?php echo $AvailablePhone ;?>;
+            available_Audience = <?php echo $AvailableAudience ;?>;
+        } else {
+            var p_JSON = localStorage.getItem('PytaniaJSON');
+            console.log(p_JSON);
+        }
 
         async function RetriveJSONData(file) {
             try {
@@ -140,14 +160,7 @@
             }
         }
 
-        var PytaniaJSON = RetriveJSONData('./pytania.json');
 
-        var last_question = <?php echo $LiczbaPytan;?>;
-        var now_question = <?php echo $NrPyt; ?>;
-
-        function GetAvailable() {
-            return [available_FiftyFifty, available_Phone, available_Audience];
-        }
 
         if(!available_Audience) {
             const a_a = document.getElementById('ratunek-publicznosc');
@@ -166,9 +179,6 @@
             a_ff.disabled = true;
             a_ff.classList.add('grayscale');
         }
-
-        console.log(last_question);
-        console.log(now_question);
 
         async function Helper(what) {
             what.classList.add('grayscale');
@@ -192,8 +202,9 @@
                     available_FiftyFifty = false;
                     break;
             }
-            
-            
+
+            localStorage.setItem('PytaniaJSON',(await JSON.stringify(PytaniaJSON)));
+
             console.log(what.id);
         }
 

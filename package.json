@@ -1,5 +1,20 @@
 {
   "dependencies": {
-    "fs": "^0.0.1-security"
-  }
+    "fs": "^0.0.1-security",
+    "php-server": "^1.0.0"
+  },
+  "name": "quizshowbiz",
+  "description": "Quiz stronka na BIZ",
+  "version": "1.0.0",
+  "gitHead": "https://github.com/Zota0/QuizShowBIZ",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "start": "node start.js"
+  },
+  "keywords": [
+    "Quiz",
+    "BIZ"
+  ],
+  "author": "Zota0",
+  "license": "MIT"
 }
