@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milionerzy!</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js'></script>
+    <script src='https://cdn.tailwindcss.com'></script>
+</head>
+<body class='bg-gray-700 min-h-svh h-svh max-h-svh px-12 text-white'>
+    <br>
+    <center class='bg-gray-700 border-8 p-0 border-gray-600'>
+        <div class='bg-gray-600 border-8 m-8 border-gray-600'>
+            <h1 class='leading-relaxed text-6xl'>Zacznij grać w <br>``Chyba Milionerów``!</h1>
+            <div class='h-8 min-h-8 w-4 min-w-4'></div>
+            <button class='border-8 w-8/12 p-8 border-gray-700' id='start_btn'>Zacznij!</button>
+            <div class='h-8 min-h-8 w-4 min-w-4'></div>
+        </div>
+    </center>
+    <script>
+        const START_btn = document.getElementById('start_btn');
+        START_btn.addEventListener('click',(event) => {
+            location.href = './questions/pyt-1.html';
+        })
+    </script>
+</body>
+</html>

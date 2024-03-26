@@ -1,0 +1,23 @@
+{
+    "winner_page": "../Win.html",
+    "loser_page": "../Lose.html",
+
+    "liczba_pytan": "1",
+
+    "1": {
+        "pytanie": "PŚĆćężźąYTANIE",
+        "A": "aaaaa",
+        "B": "bbbbb",
+        "C": "ccccc",
+        "D": "ddddd",
+        "poprawna_odp": "D"
+    },
+    "2": {
+        "pytanie": "PŚĆćężźąYTANIE",
+        "A": "aaaaa",
+        "B": "bbbbb",
+        "C": "ccccc",
+        "D": "ddddd",
+        "poprawna_odp": "A"
+    }
+}
