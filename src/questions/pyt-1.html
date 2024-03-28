@@ -62,7 +62,7 @@
 
     <script>
         const url = window.location.pathname;
-        const filename = url.substring(url.lastIndexOf('/') + 1);
+        var filename = url.substring(url.lastIndexOf('/') + 1);
         console.log(filename);
         const file_wo_dot = filename.split('.')[0];
         const NrPyt = parseInt(filename.split('-')[1]);
@@ -116,9 +116,9 @@
         var Answer_c = '';
         var Answer_d = '';
         var GoodAnswer = '';
-        var available_Audience = '';
-        var available_FiftyFifty = '';
-        var available_Phone = '';
+        var available_Audience = true;
+        var available_FiftyFifty = true;
+        var available_Phone = true;
         var ANSWERS = [];
 
         RetriveJSONData(questions_file_path).then(data => {
@@ -149,9 +149,9 @@
 
         RetriveJSONData(helpers_file_path).then(data => {
             helpers_data = data;
-            available_Audience = helpers_data['publika'];
-            available_FiftyFifty = helpers_data['polowa'];
-            available_Phone = helpers_data['telefon'];
+            available_Audience = Boolean(helpers_data['publika']);
+            available_FiftyFifty = Boolean(helpers_data['polowa']);
+            available_Phone = Boolean(helpers_data['telefon']);
 
             if(!available_Audience) {
                 const a_a = document.getElementById('ratunek-publicznosc');
@@ -170,6 +170,7 @@
                 a_ff.disabled = true;
                 a_ff.classList.add('grayscale');
             }
+
         })
 
         var last_question = QuestionNumber;
@@ -179,10 +180,6 @@
         console.log(last_question);
         console.log(NrPyt);
 
-        async function GetAvailable() {
-            return [available_Audience, available_FiftyFifty, available_Phone];
-        }
-
         async function Helper(what) {
             what.classList.add('grayscale');
             switch(what.id) {
@@ -190,20 +187,20 @@
                     console.log('telefon');
                     what.disabled = true;
                     available_Phone = false;
+                    await SendHelpersData();
                     break;
                 case 'ratunek-publicznosc':
                     console.log('publicznosc');
                     what.disabled = true;
                     available_Audience = false;
+                    await SendHelpersData();
                     break;
                 case 'ratunek-50_50':
                     await ANSWERS_elements;
                     console.log(ANSWERS_elements);
-
                     const rng_letters = 'abcd'; 
                     var good_answer_lowercase = GoodAnswer.toLowerCase();
                     var rng_answer_letter = generateLetter(good_answer_lowercase);
-
                     ANSWERS_elements.forEach((answer) => {
                         if(answer) {
                             console.log(answer);
@@ -217,29 +214,33 @@
                             }
                         }
                     });
-
                     console.log('50/50');
                     what.disabled = true;
                     available_FiftyFifty = false;
+                    await SendHelpersData();
                     break;
+                }
+
+                
             }
 
+        async function SendHelpersData() {
             fetch('http://localhost:7964', {
                 method: 'POST',
-                body: JSON.stringify(await GetAvailable()),
+                body: JSON.stringify([available_Audience, available_FiftyFifty, available_Phone]),
                 headers: {'Content-Type': 'application/json'},
-                mode: 'no-cors'
-            })
-            .then(response => response.text()).then(data => {
-                console.log(`NOTICE: data sent: ${data}`)
-            })
-            .catch(error => {
-                console.log(`ERROR: sending data: ${data} ---> Error: ${error}`)
+                mode: 'no-cors' // Consider proper CORS handling for production
+            }
+            ).then(response => response.text()
+            ).then(data => {
+            console.log(`NOTICE: data sent: ${data}`) // Log on client-side
+            }
+            ).catch(error => {
+            console.error('Error sending data:', error); // Log errors
             });
-            
-
-            console.log(what.id);
         }
+
+        console.log(what.id);
 
         async function CheckAnswer(what) {
 
@@ -301,7 +302,7 @@
 
         async function Wait(time_in_ms = 2500) {
             await new Promise(resolve => setTimeout(resolve, time_in_ms));
-        }
+        };
 
         async function PlayAudio(file) {
             var audio = new Audio(file);
