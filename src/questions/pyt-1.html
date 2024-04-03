@@ -11,6 +11,7 @@
     <meta name="subject" content="Quiz na lekcje">
     <meta name="language" content="PL">
     <meta name="robots" content="indexfollow" />
+
     <link rel="icon" type="image/ico" href="../assets/icon/favicon-512x512.ico">
 
     <title>Pytanie</title>
@@ -19,7 +20,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js'></script>
     <script src='https://cdn.tailwindcss.com'></script>
 </head>
-<body class='bg-gray-700 min-h-svh h-svh max-h-svh px-12'>
+<body class='bg-gray-700 px-12 overflow-hidden'>
     
     
     <div class='grid grid-rows-11 border-0 p-8 gap-0'>
@@ -34,28 +35,28 @@
         <div class='max-w-full grid-row-span-1 w-full h-min border-gray-600 border-8 bg-gray-600 overflow-hidden -mb-8'>
             <center class='grid grid-cols-3 grid-rows-1 border-gray-700 border-8 align-middle font-bold bg-gray-600 p-8'>
                 <div class="p-0 font-bold kolo-ratunkowe">
-                    <button accesskey='z' class='hover:cursor-pointer' onclick='Helper(this)' id="ratunek-publicznosc">
-                        <img width='75' class='scale-100' src='../assets/helpers/audience.png'>
+                    <button title='Ratunek publicznosci' accesskey='z' class='hover:cursor-pointer' onclick='Helper(this)' id="ratunek-publicznosc">
+                        <img alt='ratunek - publicznosci' width='75' class='scale-100' src='../assets/helpers/audience.png'>
                     </button>
                 </div>
                 <div class="p-0 font-bold kolo-ratunkowe">
-                    <button accesskey='x' class='hover:cursor-pointer' onclick='Helper(this)' id="ratunek-50_50">
-                        <img width='75' class='scale-100' src='../assets/helpers/50-percent.png'>
+                    <button title='Ratunek 50/50' accesskey='x' class='hover:cursor-pointer' onclick='Helper(this)' id="ratunek-50_50">
+                        <img alt='ratunek - 50/50' width='75' class='scale-100' src='../assets/helpers/50-percent.png'>
                     </button>
                 </div>
                 <div class="p-0 font-bold kolo-ratunkowe">
-                    <button accesskey='c' class='hover:cursor-pointer' onclick='Helper(this)' id="ratunek-telefon">
-                        <img width='75' class='scale-100' src='../assets/helpers/call.png'>
+                    <button title='Ratunek przez telefon' accesskey='c' class='hover:cursor-pointer' onclick='Helper(this)' id="ratunek-telefon">
+                        <img alt='ratunek - telefon' width='75' class='scale-100' src='../assets/helpers/call.png'>
                     </button>
                 </div>
             </center>
         </div>
         <div class='relative -top-44  mt-0 h-full w-full grid-row-span-5 grid border-8 gap-0 border-gray-600 bg-gray-600'>
             <div class='h-full w-full grid gap-10 grid-rows-2 grid-cols-2 p-8 border-8 border-gray-700 bg-gray-600'>
-                <button value='A' id='answer-a' class='answer-button border-pink-900 bg-red-600 border-8 p-8 font-bold font-xs text-red-100 w-11/12 h-full' accesskey='1' onclick='CheckAnswer(this)'>A.</button>
-                <button value='B' id='answer-b' class='answer-button border-cyan-900 bg-blue-600 border-8 p-8 font-bold font-xs text-blue-100 w-11/12 h-full' accesskey='2' onclick='CheckAnswer(this)'>B.</button>
-                <button value='C' id='answer-c' class='answer-button border-violet-900 bg-violet-600 border-8 p-8 font-bold font-xs text-purple-100 w-11/12 h-full' accesskey='3' onclick='CheckAnswer(this)'>C.</button>
-                <button value='D' id='answer-d' class='answer-button border-yellow-900 bg-orange-600 border-8 p-8 font-bold font-xs text-orange-100 w-11/12 h-full' accesskey='4' onclick='CheckAnswer(this)'>D.</button>
+                <button type='button' title='Odpowiedź A' value='A' id='answer-a' class='answer-button border-pink-900 bg-red-600 border-8 p-8 font-bold font-xs text-red-100 w-11/12 h-full' accesskey='1' onclick='CheckAnswer(this)'>A.</button>
+                <button type='button' title='Odpowiedź B' value='B' id='answer-b' class='answer-button border-cyan-900 bg-blue-600 border-8 p-8 font-bold font-xs text-blue-100 w-11/12 h-full' accesskey='2' onclick='CheckAnswer(this)'>B.</button>
+                <button type='button' title='Odpowiedź C' value='C' id='answer-c' class='answer-button border-violet-900 bg-violet-600 border-8 p-8 font-bold font-xs text-purple-100 w-11/12 h-full' accesskey='3' onclick='CheckAnswer(this)'>C.</button>
+                <button type='button' title='Odpowiedź D' value='D' id='answer-d' class='answer-button border-yellow-900 bg-orange-600 border-8 p-8 font-bold font-xs text-orange-100 w-11/12 h-full' accesskey='4' onclick='CheckAnswer(this)'>D.</button>
             </div>
         </div>
     </div>
@@ -91,7 +92,6 @@
             try {
                 const Response = await fetch(file);
                 const Data = await Response.json();
-                console.log(Data);
                 return Data;
             } catch(error) {
                 console.error(error);
@@ -121,8 +121,8 @@
         var available_Phone = true;
         var ANSWERS = [];
 
-        RetriveJSONData(questions_file_path).then(data => {
-            question_file = data;
+        RetriveJSONData(questions_file_path).then(questions => {
+            question_file = questions;
             win_page = question_file['winner_page']
             lose_page = question_file['loser_page'];
             QuestionNumber = parseInt(question_file['liczba_pytan']); 
@@ -130,9 +130,14 @@
             question_data = question_file[NrPyt];
             Question = question_data["pytanie"];
             Answer_a = question_data['A'];
+            console.log(Answer_a);
             Answer_b = question_data['B'];
+            console.log(Answer_b);
             Answer_c = question_data['C'];
+            console.log(Answer_c);
             Answer_d = question_data['D'];
+            console.log(Answer_d);
+
             GoodAnswer = question_data['poprawna_odp'];
             ANSWERS_txt = [Answer_a, Answer_b, Answer_c, Answer_d];
             ANSWERS_elements = [ANSWER_ELEMENT_a, ANSWER_ELEMENT_b, ANSWER_ELEMENT_c, ANSWER_ELEMENT_d];
@@ -140,18 +145,16 @@
             QUESTION_ELEMENT.textContent = 'Ładuje pytanie...';
             QUESTION_ELEMENT.textContent = `PYTANIE: ${Question}`;
             ANSWER_ELEMENT_a.textContent = `A. ${Answer_a}`;
-            ANSWER_ELEMENT_b.textContent = `B. ${Answer_a}`;
-            ANSWER_ELEMENT_c.textContent = `C. ${Answer_a}`;
-            ANSWER_ELEMENT_d.textContent = `D. ${Answer_a}`;
+            ANSWER_ELEMENT_b.textContent = `B. ${Answer_b}`;
+            ANSWER_ELEMENT_c.textContent = `C. ${Answer_c}`;
+            ANSWER_ELEMENT_d.textContent = `D. ${Answer_d}`;
         });
 
-        console.log(Answer_a);
-
-        RetriveJSONData(helpers_file_path).then(data => {
-            helpers_data = data;
-            available_Audience = Boolean(helpers_data['publika']);
-            available_FiftyFifty = Boolean(helpers_data['polowa']);
-            available_Phone = Boolean(helpers_data['telefon']);
+        RetriveJSONData(helpers_file_path).then(helpers => {
+            helpers_data = helpers;
+            available_Audience = eval(helpers_data['publika']);
+            available_FiftyFifty = eval(helpers_data['polowa']);
+            available_Phone = eval(helpers_data['telefon']);
 
             if(!available_Audience) {
                 const a_a = document.getElementById('ratunek-publicznosc');
@@ -170,15 +173,11 @@
                 a_ff.disabled = true;
                 a_ff.classList.add('grayscale');
             }
-
         })
-
-        var last_question = QuestionNumber;
 
         document.title = `Pytanie - ${NrPyt}`;
 
-        console.log(last_question);
-        console.log(NrPyt);
+        console.log(QuestionNumber);
 
         async function Helper(what) {
             what.classList.add('grayscale');
@@ -221,7 +220,23 @@
                     break;
                 }
 
-                
+                if(!available_Audience) {
+                const a_a = document.getElementById('ratunek-publicznosc');
+                    a_a.disabled = true;
+                    a_a.classList.add('grayscale');
+                }
+
+                if(!available_Phone) {
+                    const a_p = document.getElementById('ratunek-telefon');
+                    a_p.disabled = true;
+                    a_p.classList.add('grayscale');
+                }
+
+                if(!available_FiftyFifty) {
+                    const a_ff = document.getElementById('ratunek-50_50');
+                    a_ff.disabled = true;
+                    a_ff.classList.add('grayscale');
+                }
             }
 
         async function SendHelpersData() {
@@ -239,8 +254,6 @@
             console.error('Error sending data:', error); // Log errors
             });
         }
-
-        console.log(what.id);
 
         async function CheckAnswer(what) {
 
@@ -268,19 +281,20 @@
             await StressWait('../assets/sounds/time_to_reveal.wav');
             clicked_btn.classList.remove('animate-pulse');
 
+            
+
             if(right_clicked_btn) {
                 clicked_btn.style.backgroundColor = 'green';
                 clicked_btn.classList.add('brightness-150');
                 clicked_btn.style.borderColor = 'lime';
                 PlayAudio('../assets/sounds/right_answer.wav');
                 
-                if(NrPyt === last_question) {
+                if(NrPyt === QuestionNumber) {
                     console.log("ITS LAST ONE");
                     console.log(win_page);
                     window.location.href = win_page;
 
                 } else {
-
                     console.log("NEXT ONE");
                     var next_question = './pyt-' +  ++now_question + '.html';
                     console.log(next_question);

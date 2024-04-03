@@ -2,14 +2,23 @@
     "winner_page": "../Win.html",
     "loser_page": "../Lose.html",
 
-    "liczba_pytan": "1",
+    "liczba_pytan": "2",
 
     "1": {
-        "pytanie": "Pytanie numer 2 :)",
+        "pytanie": "Pytanie numer 1 :)",
         "A": "Nie",
         "B": "Tak",
         "C": "Nie wiem",
         "D": "Być może",
         "poprawna_odp": "B"
+    },
+
+    "2": {
+        "pytanie": "Pytanie numer 2?",
+        "A": "Jakaś odpowiedź 1",
+        "B": "Konkretna odpowiedź",
+        "C": "Nie wiem",
+        "D": "Tak",
+        "poprawna_odp": "D"
     }
 }
