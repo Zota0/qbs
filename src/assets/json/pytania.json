@@ -14,11 +14,66 @@
     },
 
     "2": {
-        "pytanie": "Pytanie numer 2?",
-        "A": "Jakaś odpowiedź 1",
-        "B": "Konkretna odpowiedź",
-        "C": "Nie wiem",
-        "D": "Tak",
+        "pytanie": "Co to jest kamień milowy?",
+        "A": "punkt kontrolny",
+        "B": "grupa ludzi",
+        "C": "finanse",
+        "D": "lider",
+        "poprawna_odp": "A"
+    },
+    "3": {
+        "pytanie": "Co nie jest elementem projektu?",
+        "A": "cel",
+        "B": "czas realizacji",
+        "C": "dobre chęci",
+        "D": "źródła finansowe",
+        "poprawna_odp": "C"
+    },
+    "4": {
+        "pytanie": "Od czego zaczyna się raport końcowy?",
+        "A": "uwag i komentarzy",
+        "B": "od wprowadzenia",
+        "C": "harmonogramu projektu",
+        "D": "wyniki finansowe",
+        "poprawna_odp": "B"
+    },
+    "5": {
+        "pytanie": "Jakie jest podstawowe zadanie lidera?",
+        "A": "nawiązywanie kontaktów",
+        "B": "koordynowanie realizacji zadań",
+        "C": "dobra postawa",
+        "D": "podejmowanie decyzji",
+        "poprawna_odp": "B"
+    },
+    "6": {
+        "pytanie": "Czym jest harmonogram projektu",
+        "A": "wykresem Gantta",
+        "B": "dokumentem określającym wydatki",
+        "C": "rozpisanym chronologicznie planem działania",
+        "D": "kamieniem milowym",
+        "poprawna_odp": "C"
+    },
+    "7": {
+        "pytanie": "trzeci etap projektu to:",
+        "A": "zdefiniowanie celu",
+        "B": "ustalenie szczegółów projektu",
+        "C": "podsumowanie projektu",
+        "D": "realizacja projektu",
         "poprawna_odp": "D"
-    }
-}
+    },
+    "8": {
+        "pytanie": "Najbardziej precyzyjną i szczegółową metodą szacowania kosztów jest:",
+        "A": "metoda oddolna",
+        "B": "metoda prób i błędów",
+        "C": "metoda odgórna",
+        "D": "metoda Gantta",
+        "poprawna_odp": "A"
+    },
+    "9": {
+        "pytanie": "koordynator to rola w zespole projektowym zorientowana na:",
+        "A": "działanie",
+        "B": "rozwiązanie problemu",
+        "C": "ludzi",
+        "D": "harmonogram",
+        "poprawna_odp": "C"
+        },
