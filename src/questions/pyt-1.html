@@ -69,7 +69,6 @@
         const NrPyt = parseInt(filename.split('-')[1]);
         var now_question = NrPyt;
 
-        const questions_file_path = 'https://raw.githubusercontent.com/Zota0/qbs/main/src/assets/json/pytania.json';
         const helpers_file_path = '../assets/json/kola_ratunkowe.json';
 
         function generateLetter(exclusion) {
@@ -121,7 +120,7 @@
         var available_Phone = true;
         var ANSWERS = [];
 
-        RetriveJSONData(questions_file_path).then(questions => {
+        RetriveJSONData(https://raw.githubusercontent.com/Zota0/qbs/main/src/assets/json/pytania.json').then(questions => {
             question_file = questions;
             win_page = question_file['winner_page']
             lose_page = question_file['loser_page'];
