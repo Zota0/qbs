@@ -120,7 +120,7 @@
         var available_Phone = true;
         var ANSWERS = [];
 
-        RetriveJSONData(https://raw.githubusercontent.com/Zota0/qbs/main/src/assets/json/pytania.json').then(questions => {
+        RetriveJSONData('https://raw.githubusercontent.com/Zota0/qbs/main/src/assets/json/pytania.json').then(questions => {
             question_file = questions;
             win_page = question_file['winner_page']
             lose_page = question_file['loser_page'];
