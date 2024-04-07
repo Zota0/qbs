@@ -2,7 +2,7 @@
     "winner_page": "../Win.html",
     "loser_page": "../Lose.html",
 
-    "liczba_pytan": "2",
+    "liczba_pytan": "1",
 
     "1": {
         "pytanie": "Pytanie numer 1 :)",
