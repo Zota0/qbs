@@ -94,7 +94,7 @@
                 const Data = await Response.json();
                 return Data;
             } catch(error) {
-                console.error(error);
+                console.warn(error);
             }
         }
         const QUESTION_ELEMENT = document.getElementById('question');
@@ -251,7 +251,7 @@
             console.log(`NOTICE: data sent: ${data}`) // Log on client-side
             }
             ).catch(error => {
-            console.error('Error sending data:', error); // Log errors
+            console.warn('Error sending data:', error); // Log errors
             });
         }
 
