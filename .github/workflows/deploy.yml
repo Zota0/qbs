@@ -1,0 +1,41 @@
+name: Deploy Website
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16  # You can adjust this version as needed
+
+      - name: Install dependencies (if applicable)
+        run: npm install  # Adjust this command if you use a different package manager
+
+      - name: Run your Node.js script
+        run: echo "listen" | node start.js
+
+      - name: Build static HTML site (replace with your build command)
+        run: cd src && npm run build  # Navigate to src directory before build command
+
+      - name: Upload static site (replace with your output directory)
+        uses: actions/upload-artifact@v3
+        with:
+          name: website
+          path: src/  # Adjust this path to your actual output directory within src
+
+      # You'll need a separate action to deploy the artifact to your hosting platform
+      # This example uses a placeholder comment
+      # - name: Deploy to GitHub Pages (replace with your deployment action)
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ${{ secrets.PUBLISH_DIR }}  # Optional, for subdirectory deployment
+
