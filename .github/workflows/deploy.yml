@@ -22,9 +22,6 @@ jobs:
       - name: Run your Node.js script
         run: echo "listen" | node start.js
 
-      - name: Build static HTML site (replace with your build command)
-        run: cd src && npm run build  # Navigate to src directory before build command
-
       - name: Upload static site (replace with your output directory)
         uses: actions/upload-artifact@v3
         with:
