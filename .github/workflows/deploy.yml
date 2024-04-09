@@ -17,7 +17,7 @@ jobs:
           node-version: 16  # You can adjust this version as needed
 
       - name: Install dependencies (if applicable)
-        run: cd src && npm install  # Adjust this command if you use a different package manager
+        run: npm install  # Adjust this command if you use a different package manager
 
       - name: Run your Node.js script
         run: echo "listen" | node start.js
