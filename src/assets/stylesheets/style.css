@@ -1,0 +1,8 @@
+#question-p {
+    font-size: 64px;
+    line-height: 105%;
+}
+
+#answer-a, #answer-b, #answer-c, #answer-d {
+    font-size: 24px;
+}
