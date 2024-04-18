@@ -102,6 +102,11 @@
         const ANSWER_ELEMENT_c = document.getElementById('answer-c');
         const ANSWER_ELEMENT_d = document.getElementById('answer-d');
         const LOSER_ELEMENT = document.getElementById('looser-element')
+        const a_p = document.getElementById('ratunek-telefon');
+        const a_ff = document.getElementById('ratunek-50_50');
+        const a_a = document.getElementById('ratunek-publicznosc');
+
+
 
         var question_file = {};
         var question_data = {};
@@ -149,26 +154,34 @@
             ANSWER_ELEMENT_d.textContent = `D. ${Answer_d}`;
         });
 
-        RetriveJSONData(helpers_file_path).then(helpers => {
+        RetriveJSONData(helpers_file_path).then(async (helpers) => {
             helpers_data = helpers;
-            available_Audience = eval(helpers_data['publika']);
-            available_FiftyFifty = eval(helpers_data['polowa']);
-            available_Phone = eval(helpers_data['telefon']);
+            available_Audience = JSON.parse(sessionStorage.getItem('available_Audience').toLocaleLowerCase());
+            available_FiftyFifty = JSON.parse(sessionStorage.getItem('available_FiftyFifty').toLocaleLowerCase());
+            available_Phone = JSON.parse(sessionStorage.getItem('available_Phone').toLocaleLowerCase());
 
-            if(!available_Audience) {
-                const a_a = document.getElementById('ratunek-publicznosc');
+            console.log(available_Audience);
+            console.log(available_FiftyFifty);
+            console.log(available_Phone);
+
+            console.log("AA", available_Audience);
+
+            if(available_Audience === false || available_Audience === 'false') {
                 a_a.disabled = true;
                 a_a.classList.add('grayscale');
             }
 
-            if(!available_Phone) {
-                const a_p = document.getElementById('ratunek-telefon');
+            console.log("AP", available_Phone);
+
+            if(available_Phone === false || available_Phone === 'false') {
                 a_p.disabled = true;
                 a_p.classList.add('grayscale');
             }
 
-            if(!available_FiftyFifty) {
-                const a_ff = document.getElementById('ratunek-50_50');
+            console.log("AF", available_FiftyFifty);
+
+            if(available_FiftyFifty === false || available_FiftyFifty === 'false') {
+                
                 a_ff.disabled = true;
                 a_ff.classList.add('grayscale');
             }
@@ -219,39 +232,47 @@
                     break;
                 }
 
-                if(!available_Audience) {
-                const a_a = document.getElementById('ratunek-publicznosc');
+                console.log("VA", available_Audience);
+
+                if(available_Audience == false || available_Audience == 'false') {
                     a_a.disabled = true;
                     a_a.classList.add('grayscale');
                 }
 
-                if(!available_Phone) {
-                    const a_p = document.getElementById('ratunek-telefon');
+                console.log("VP", available_FiftyFifty);
+
+
+                if(available_Phone == false || available_Phone == 'false') {
                     a_p.disabled = true;
                     a_p.classList.add('grayscale');
                 }
 
-                if(!available_FiftyFifty) {
-                    const a_ff = document.getElementById('ratunek-50_50');
+                console.log("VF", available_FiftyFifty);
+
+                if(available_FiftyFifty == false || available_FiftyFifty == 'false') {
                     a_ff.disabled = true;
                     a_ff.classList.add('grayscale');
                 }
             }
 
         async function SendHelpersData() {
-            fetch('http://localhost:7964', {
-                method: 'POST',
-                body: JSON.stringify([available_Audience, available_FiftyFifty, available_Phone]),
-                headers: {'Content-Type': 'application/json'},
-                mode: 'no-cors' // Consider proper CORS handling for production
-            }
-            ).then(response => response.text()
-            ).then(data => {
-            console.log(`NOTICE: data sent: ${data}`) // Log on client-side
-            }
-            ).catch(error => {
-            console.warn('Error sending data:', error); // Log errors
-            });
+            // fetch('http://localhost:7964', {
+            //     method: 'POST',
+            //     body: JSON.stringify([available_Audience, available_FiftyFifty, available_Phone]),
+            //     headers: {'Content-Type': 'application/json'},
+            //     mode: 'no-cors' // Consider proper CORS handling for production
+            // }
+            // ).then(response => response.text()
+            // ).then(data => {
+            // console.log(`NOTICE: data sent: ${data}`) // Log on client-side
+            // }
+            // ).catch(error => {
+            // console.warn('Error sending data:', error); // Log errors
+            // });
+
+            sessionStorage.setItem('available_Audience', available_Audience);
+            sessionStorage.setItem('available_FiftyFifty', available_FiftyFifty);
+            sessionStorage.setItem('available_Phone', available_Phone);
         }
 
         async function CheckAnswer(what) {

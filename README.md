@@ -1,15 +1,8 @@
 <div style="font-family:'Arial';background:black;color:white;">
-    <h1> <q>Chyba Milionerzy"</q> </h1>
-    <h2 style='text-decoration:underline;text-decoration-color:red;color:pink;'> Backend przez Zota0(TOZA)
-    </h2>
+    <h1> <q>Chyba Milionerzy</q> </h1>
     <h2> Jak używać? </h2>
-    <p style='font-size:14px;'><span style='font-size:18px;'>P</span>roste!
-    Wystarczy włączyć dwa pliki <q>start.exe</q> oraz <q>html_server.exe</q>, a następnie w <q>start.exe</q> wpisać:
-    <blockquote style="font-family:'Courier New';">listen</blockquote> By zresetować dane należy wpisać:
-    <blockquote style="font-family:'Courier New';">reset</blockquote>oraz następnie:
-    <blockquote style="font-family:'Courier New';">listen</blockquote>
-    <br>
-    W celu wyłączenia <b>OBU</b> programów należy kliknąć <blockquote><q>CTRL+C</q></q></blockquote>
-    w obu terminalach/programach, które pojawiły się po włączeniu.
-    </p>
+    <div>
+        <p>Wejdź na stronę: <blockquote>https://zota0.github.io/</blockquote></p>
+        i rozpocznij swój quiz - powodzenia :)
+    </div>
 </div>
