@@ -34,9 +34,9 @@
     "4": {
         "pytanie": "Od czego zaczyna się raport końcowy?",
         "A": "uwag i komentarzy",
-        "B": "od wprowadzenia",
+        "B": "wprowadzenia",
         "C": "harmonogramu projektu",
-        "D": "wyniki finansowe",
+        "D": "wyników finansowych",
         "poprawna_odp": "B"
     },
 
