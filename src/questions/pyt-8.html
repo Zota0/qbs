@@ -147,7 +147,7 @@
             ANSWERS_elements = [ANSWER_ELEMENT_a, ANSWER_ELEMENT_b, ANSWER_ELEMENT_c, ANSWER_ELEMENT_d];
 
             QUESTION_ELEMENT.textContent = 'Ładuje pytanie...';
-            QUESTION_ELEMENT.textContent = `PYTANIE: ${Question}`;
+            QUESTION_ELEMENT.textContent = `${Question}`;
             ANSWER_ELEMENT_a.textContent = `A. ${Answer_a}`;
             ANSWER_ELEMENT_b.textContent = `B. ${Answer_b}`;
             ANSWER_ELEMENT_c.textContent = `C. ${Answer_c}`;
@@ -319,7 +319,7 @@
                     var next_question = './pyt-' +  ++now_question + '.html';
                     console.log(next_question);
 
-                    Wait(1000);
+                    Wait();
 
                     window.location.href = next_question;
 
