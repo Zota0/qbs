@@ -2,7 +2,7 @@
     "winner_page": "../Win.html",
     "loser_page": "../Lose.html",
 
-    "liczba_pytan": "9",
+    "liczba_pytan": "12",
 
    "1": {
         "pytanie": "Co to jest motywacja?",
@@ -83,5 +83,30 @@
         "C": "ludzi",
         "D": "harmonogram",
         "poprawna_odp": "C"
-    }
+    },
+ "10": {
+    "pytanie": "Jaka jest główna korzyść z zastosowania metodyki zarządzania projektami?",
+    "A": "Usprawnienie komunikacji i współpracy w zespole.",
+    "B": "Zwiększenie szans na osiągnięcie celów projektu.",
+    "C": "Obniżenie kosztów realizacji projektu.",
+    "D": "Wszystkie powyższe.",
+    "poprawna_odp": "D"
+  },
+  "11": {
+    "pytanie": "Która z poniższych cech NIE jest charakterystyczna dla efektywnego kierownika projektu?",
+    "A": "Unikanie podejmowania decyzji.",
+    "B": "Skrupulatne planowanie i organizacja pracy.",
+    "C": "Umiejętność delegowania zadań.",
+    "D": "Motywowanie i inspirowanie zespołu.",
+    "poprawna_odp": "A"
+  },
+  "12": {
+    "pytanie": "Jakie są kluczowe czynniki sukcesu projektu?",
+    "A": "Jasne określenie celów i zakresu projektu.",
+    "B": "Skuteczne planowanie i zarządzanie zasobami.",
+    "C": "Dobra komunikacja i współpraca w zespole.",
+    "D": "Wszystkie powyższe.",
+    "poprawna_odp": "D"
+  }
+}
 }
