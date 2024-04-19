@@ -1,8 +1,11 @@
 #question-p {
-    font-size: 64px;
-    line-height: 105%;
+    font-size: 72px;
+    line-height: 100%;
 }
 
 #answer-a, #answer-b, #answer-c, #answer-d {
     font-size: 24px;
+    padding: 0;
+    padding-top: 4svh;
+    padding-bottom: 4svh;
 }
